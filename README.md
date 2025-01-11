@@ -39,9 +39,9 @@ For easier management, the default listening ports are:
 Start services with pre-configured files:
 
 ```bash
-./aquatic_http -c "aquatic-http-config.toml"
-./aquatic_udp -c "aquatic-udp-config.toml"
-./aquatic_ws -c "aquatic-ws-config.toml"
+./aquatic/aquatic_http -c "aquatic-http-config.toml"
+./aquatic/aquatic_udp -c "aquatic-udp-config.toml"
+./aquatic/aquatic_ws -c "aquatic-ws-config.toml"
 ```
 
 ### 创建新配置 / Create New Configuration
@@ -50,9 +50,9 @@ Start services with pre-configured files:
 If you need to use custom configuration, you can generate new configuration files using:
 
 ```bash
-./aquatic_http -p > "aquatic-http-config.toml"
-./aquatic_udp -p > "aquatic-udp-config.toml"
-./aquatic_ws -p > "aquatic-ws-config.toml"
+./aquatic/aquatic_http -p > "aquatic-http-config.toml"
+./aquatic/aquatic_udp -p > "aquatic-udp-config.toml"
+./aquatic/aquatic_ws -p > "aquatic-ws-config.toml"
 ```
 
 ## 注意事项 / Notes
@@ -78,3 +78,11 @@ If you're using a systemd service file, add the following configuration:
 ```bash
 LimitMEMLOCK=65536000
 ```
+
+## 更多信息 / More Information
+
+如果您需要更详细的介绍，可以访问以下链接：
+For more detailed information, please visit:
+
+- [@lib.rs/crates/aquatic](https://lib.rs/crates/aquatic)
+- [@github.com/greatest-ape/aquatic](https://github.com/greatest-ape/aquatic)
