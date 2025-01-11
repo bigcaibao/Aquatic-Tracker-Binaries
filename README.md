@@ -2,7 +2,7 @@
 
 ## 简介 / Introduction
 
-这是一个高性能的 BitTorrent Tracker 服务器的预编译二进制文件包。为了方便使用，我们提供了开箱即用的二进制文件和配置文件。
+这是一个高性能的 BitTorrent Tracker 服务预编译二进制文件包。为了方便使用，做成了开箱即用的二进制文件以及附带了相关配置文件。
 
 This is a pre-compiled binary package of a high-performance BitTorrent Tracker server. For convenience, we provide ready-to-use binary files and configuration files.
 
