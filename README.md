@@ -39,9 +39,9 @@ For easier management, the default listening ports are:
 Start services with pre-configured files:
 
 ```bash
-./aquatic/aquatic_http -c "aquatic-http-config.toml"
-./aquatic/aquatic_udp -c "aquatic-udp-config.toml"
-./aquatic/aquatic_ws -c "aquatic-ws-config.toml"
+./aquatic_http -c "aquatic-http-config.toml"
+./aquatic_udp -c "aquatic-udp-config.toml"
+./aquatic_ws -c "aquatic-ws-config.toml"
 ```
 
 ### 创建新配置 / Create New Configuration
@@ -50,9 +50,9 @@ Start services with pre-configured files:
 If you need to use custom configuration, you can generate new configuration files using:
 
 ```bash
-./aquatic/aquatic_http -p > "aquatic-http-config.toml"
-./aquatic/aquatic_udp -p > "aquatic-udp-config.toml"
-./aquatic/aquatic_ws -p > "aquatic-ws-config.toml"
+./aquatic_http -p > "aquatic-http-config.toml"
+./aquatic_udp -p > "aquatic-udp-config.toml"
+./aquatic_ws -p > "aquatic-ws-config.toml"
 ```
 
 ## 注意事项 / Notes
