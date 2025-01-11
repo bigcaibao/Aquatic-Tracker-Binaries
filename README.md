@@ -11,7 +11,7 @@ This is a pre-compiled binary package of a high-performance BitTorrent Tracker s
 从以下地址获取最新的二进制文件：
 Get the latest binary files from:
 ```bash
-https://github.com/bigcaibao/Aquatic-Tracker-Binaries
+https://github.com/bigcaibao/Aquatic-Tracker-Binaries/releases/download/0.9.0/aquatic_0.9.0.tar.gz
 ```
 
 解压文件并赋予可执行权限：
