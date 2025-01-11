@@ -59,3 +59,21 @@ If you need to use custom configuration, you can generate new configuration file
 - 确保所有文件具有执行权限 / Ensure all files have execution permissions
 - 确保配置文件路径正确 / Ensure configuration file paths are correct
 - 确保端口未被占用 / Ensure ports are not in use by other applications
+
+### 内存锁定限制设置 / Memory Lock Limits Configuration
+
+如果您计划运行完整的 Tracker 服务（不仅仅是 UDP 服务），请确保系统的内存锁定限制充足。您可以通过在 `/etc/security/limits.conf` 文件中添加以下行来实现（添加后需要重新登录生效）：
+
+If you plan to run the complete Tracker service (not just the UDP service), make sure the system's memory lock limits are sufficient. You can do this by adding the following lines to `/etc/security/limits.conf` and then logging out and back in:
+
+```bash
+*    hard    memlock    65536
+*    soft    memlock    65536
+```
+
+如果您使用 systemd 服务文件，请在服务文件中添加以下配置：
+If you're using a systemd service file, add the following configuration:
+
+```bash
+LimitMEMLOCK=65536000
+```
