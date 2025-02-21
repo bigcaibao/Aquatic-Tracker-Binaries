@@ -1,4 +1,7 @@
-use std::{net::SocketAddr, path::PathBuf};
+use std::{
+    net::{Ipv4Addr, Ipv6Addr, SocketAddr, SocketAddrV4, SocketAddrV6},
+    path::PathBuf,
+};
 
 use aquatic_common::{access_list::AccessListConfig, privileges::PrivilegeConfig};
 use aquatic_toml_config::TomlConfig;
@@ -70,10 +73,24 @@ impl aquatic_common::cli::Config for Config {
 #[derive(Clone, Debug, PartialEq, TomlConfig, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct NetworkConfig {
-    /// Bind to this address
-    pub address: SocketAddr,
-    /// Only allow access over IPv6
-    pub only_ipv6: bool,
+    /// Use IPv4
+    pub use_ipv4: bool,
+    /// Use IPv6
+    pub use_ipv6: bool,
+    /// IPv4 address and port
+    ///
+    /// Examples:
+    /// - Use 0.0.0.0:3000 to bind to all interfaces on port 3000
+    /// - Use 127.0.0.1:3000 to bind to the loopback interface (localhost) on
+    ///   port 3000
+    pub address_ipv4: SocketAddrV4,
+    /// IPv6 address and port
+    ///
+    /// Examples:
+    /// - Use [::]:3000 to bind to all interfaces on port 3000
+    /// - Use [::1]:3000 to bind to the loopback interface (localhost) on
+    ///   port 3000
+    pub address_ipv6: SocketAddrV6,
     /// Maximum number of pending TCP connections
     pub tcp_backlog: i32,
     /// Enable TLS
@@ -110,21 +127,30 @@ pub struct NetworkConfig {
     ///   header. Works with typical multi-IP setups (e.g., "X-Forwarded-For")
     ///   as well as for single-IP setups (e.g., nginx "X-Real-IP")
     pub reverse_proxy_ip_header_format: ReverseProxyPeerIpHeaderFormat,
+    /// Set flag on IPv6 socket to only accept IPv6 traffic.
+    ///
+    /// This should typically be set to true unless your OS does not support
+    /// double-stack sockets (that is, sockets that receive both IPv4 and IPv6
+    /// packets).
+    pub set_only_ipv6: bool,
 }
 
 impl Default for NetworkConfig {
     fn default() -> Self {
         Self {
-            address: SocketAddr::from(([0, 0, 0, 0], 3000)),
+            use_ipv4: true,
+            use_ipv6: true,
+            address_ipv4: SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, 3000),
+            address_ipv6: SocketAddrV6::new(Ipv6Addr::UNSPECIFIED, 3000, 0, 0),
             enable_tls: false,
             tls_certificate_path: "".into(),
             tls_private_key_path: "".into(),
-            only_ipv6: false,
             tcp_backlog: 1024,
             keep_alive: true,
             runs_behind_reverse_proxy: false,
             reverse_proxy_ip_header_name: "X-Forwarded-For".into(),
             reverse_proxy_ip_header_format: Default::default(),
+            set_only_ipv6: true,
         }
     }
 }
